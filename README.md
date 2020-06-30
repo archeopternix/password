@@ -1,7 +1,7 @@
 # Package password
 
 install:
-     go get github.com/archeopternix/password
+ go get github.com/archeopternix/password
 
 ## PasswordCrypter
 PasswordCrypter is a helper for encrypting and decrypting passwords based on
