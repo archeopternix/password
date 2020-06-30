@@ -1,4 +1,4 @@
-module kouri.cc/tools/password
+module github.com/archeopternix/password
 
 go 1.13
 
