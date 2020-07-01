@@ -1,6 +1,6 @@
 # Package password
 
-[![GoDoc]](https://pkg.go.dev/github.com/archeopternix/password)
+[GoDoc](https://pkg.go.dev/github.com/archeopternix/password)
 
 install:
 ```
