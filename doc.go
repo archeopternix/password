@@ -1,6 +1,6 @@
 // password project doc.go
 
 /*
-password document
+Package password document
 */
 package password
