@@ -1,10 +1,10 @@
-// PasswordCrypter: is a helper for encrypting and decrypting passwords based on
+// Package password is a helper for encrypting and decrypting passwords based on
 // AES encryption standard
 //
 // usage:
 // 	func main() {
-//		// create a new instance of PasswordCrypter using a secret
-//		ncp := NewPasswordCrypter("samplepass")
+//		// create a new instance of Crypter using a secret
+//		ncp := NewCrypter("samplepass")
 //		// call the encryption with the 'password' that should be encrypted
 //		cryptstr := ncp.EncryptString("Hello World!")
 //	}
@@ -23,20 +23,20 @@ import (
 	"log"
 )
 
-// PasswordCrypter is a helper for encrypting and decrypting passwords based on
+// Crypter is a helper for encrypting and decrypting passwords based on
 // AES encryption standard
-type PasswordCrypter struct {
+type Crypter struct {
 	passphrase string // holds the secret passphrase
 }
 
-// NewPasswordCrypter creates a new instance of PasswordCrypter with a new secret string.
+// NewCrypter creates a new instance of PasswordCrypter with a new secret string.
 // the length of the secret passphrase must be at lease 6 characters long
-func NewPasswordCrypter(secretpassphrase string) (pc PasswordCrypter) {
+func NewCrypter(secretpassphrase string) (pc Crypter) {
 
 	if len(secretpassphrase) < 6 {
 		log.Panic("Length of passphrase is too short (less than 6 characters)")
 	}
-	pc = PasswordCrypter{passphrase: secretpassphrase}
+	pc = Crypter{passphrase: secretpassphrase}
 
 	return pc
 }
@@ -85,7 +85,7 @@ func decrypt(data []byte, passphrase string) []byte {
 
 // EncryptString encrypts a password string based on AES encryption standard
 // the PasswordCrypter has to be initialized with a passphrase first
-func (pc PasswordCrypter) EncryptString(data string) (encodedstring string) {
+func (pc Crypter) EncryptString(data string) (encodedstring string) {
 	ciphertext := encrypt([]byte(data), pc.passphrase)
 	encoded := hex.EncodeToString(ciphertext)
 
@@ -94,7 +94,7 @@ func (pc PasswordCrypter) EncryptString(data string) (encodedstring string) {
 
 // DecryptString decrypts a password string based on AES encryption standard
 // the PasswordCrypter has to be initialized with a passphrase first
-func (pc PasswordCrypter) DecryptString(data string) (plaintext string) {
+func (pc Crypter) DecryptString(data string) (plaintext string) {
 	decoded, err := hex.DecodeString(data)
 	if err != nil {
 		log.Printf("Decrypt String failed: %v", err)
